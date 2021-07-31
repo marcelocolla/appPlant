@@ -23,7 +23,7 @@ const Routes = () => {
         screenOptions={{ headerShown: true, header: (props) => <AppHeader {...props} /> }}
       >
         <Drawer.Screen name="Loading" component={LoadingPage} options={{ headerShown: false }} />
-        <Drawer.Screen name="Login" component={LoginPage} />
+        <Drawer.Screen name="Login" component={LoginPage} options={{ headerShown: false }} />
         <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Plantas' }} />
       </Drawer.Navigator>
     </NavigationContainer>

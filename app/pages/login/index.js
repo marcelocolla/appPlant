@@ -11,10 +11,14 @@ const LoginPage = () => {
     navigation.navigate('Root')
   }
 
+  const handleSignIn = () => {
+    navigation.navigate('SignIn')
+  }
+
   return (
     <Root>
       <FormContent>
-        <Title>Entra com sua minha conta!</Title>
+        <Title>Entrar</Title>
         <Spacer />
 
         <TextInput label="Email" mode="outlined" right={<TextInput.Icon name="account" />} />
@@ -30,6 +34,11 @@ const LoginPage = () => {
         <Spacer />
         <Button icon="send" mode="contained" onPress={handleSubmit}>
           Entrar
+        </Button>
+
+        <Spacer />
+        <Button icon="account-plus" onPress={handleSignIn}>
+          Ainda não possui uma conta? Criar conta
         </Button>
       </FormContent>
     </Root>
