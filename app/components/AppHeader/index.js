@@ -1,18 +1,14 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { Appbar, Avatar } from 'react-native-paper'
-import {
-  NavigationContainer,
-  DrawerActions,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native'
+import { Appbar, useTheme } from 'react-native-paper'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import theme from '../../theme'
 
 const Header = ({ scene, previous }) => {
   const navigation = useNavigation()
+  const { colors } = useTheme()
 
   const { options } = scene.descriptor
   const title =
@@ -27,12 +23,12 @@ const Header = ({ scene, previous }) => {
   }
 
   return (
-    <Appbar.Header theme={{ colors: { primary: theme.appBar } }}>
+    <Appbar.Header theme={{ colors: { primary: colors.appBar } }}>
       {previous ? (
         <Appbar.BackAction onPress={navigation.goBack} />
       ) : (
         <TouchableOpacity onPress={handelMenu}>
-          <MaterialCommunityIcons name="menu" size={36} color={theme.white} />
+          <MaterialCommunityIcons name="menu" size={36} color={colors.white} />
         </TouchableOpacity>
       )}
 

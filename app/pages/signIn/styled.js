@@ -1,9 +1,13 @@
+import React from 'react'
 import styled from 'styled-components/native'
 import theme from '../../theme'
 
 export const Root = styled.View`
   flex: 1;
   background-color: ${theme.colors.white};
-  align-items: center;
   justify-content: center;
+`
+
+export const FormContent = styled.View`
+  padding: 24px;
 `

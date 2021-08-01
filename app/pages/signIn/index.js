@@ -6,28 +6,31 @@ import Spacer from '../../components/Spacer'
 import Button from '../../components/Button'
 import { Root, FormContent } from './styled'
 
-const LoginPage = () => {
+const SignInPage = () => {
   const navigation = useNavigation()
 
   const handleSubmit = () => {
-    navigation.navigate('Root')
+    navigation.navigate('Login')
   }
 
-  const handleSignIn = () => {
-    navigation.navigate('SignIn')
+  const handleLogin = () => {
+    navigation.navigate('Login')
   }
 
   return (
     <Root>
       <FormContent>
-        <Title>Entrar</Title>
+        <Title>Criar conta</Title>
         <Spacer />
+
+        <TextInput label="Nome" mode="outlined" right={<TextInput.Icon name="account" />} />
 
         <TextInput label="Email" mode="outlined" right={<TextInput.Icon name="account" />} />
 
         <Spacer />
         <TextInput
           secureTextEntry
+          name="password"
           label="Senha"
           mode="outlined"
           right={<TextInput.Icon name="eye" />}
@@ -35,16 +38,16 @@ const LoginPage = () => {
 
         <Spacer />
         <Button icon="send" mode="contained" onPress={handleSubmit}>
-          Entrar
+          Cadastrar
         </Button>
 
-        <Spacer sized={1.5} />
-        <Button icon="account-plus" onPress={handleSignIn}>
-          Não possui uma conta? Criar conta
+        <Spacer />
+        <Button icon="account-plus" onPress={handleLogin}>
+          Já possui uma conta? Entrar
         </Button>
       </FormContent>
     </Root>
   )
 }
 
-export default LoginPage
+export default SignInPage
