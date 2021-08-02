@@ -2,23 +2,24 @@ import React from 'react'
 import { FlatList } from 'react-native'
 
 import CardPlant from '../../components/CardPlant'
-import Spacer from '../../components/Spacer'
+import SearchField from '../../components/SearchField'
 
 import { Root } from './styled'
 
 import data from '../../mock/plants'
 
-const MainPage = () => {
+const FindPlantsPage = () => {
   return (
     <Root>
+      <SearchField />
+
       <FlatList
         data={data}
-        renderItem={({ item }) => <CardPlant {...item} showAction={false} />}
+        renderItem={({ item }) => <CardPlant {...item} />}
         keyExtractor={(item) => item.id}
-        ListHeaderComponent={<Spacer sized={2} />}
       />
     </Root>
   )
 }
 
-export default MainPage
+export default FindPlantsPage

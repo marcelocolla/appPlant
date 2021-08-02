@@ -21,10 +21,11 @@ const SignInPage = () => {
     <Root>
       <FormContent>
         <Title>Criar conta</Title>
-        <Spacer />
 
+        <Spacer />
         <TextInput label="Nome" mode="outlined" right={<TextInput.Icon name="account" />} />
 
+        <Spacer />
         <TextInput label="Email" mode="outlined" right={<TextInput.Icon name="account" />} />
 
         <Spacer />
@@ -42,7 +43,7 @@ const SignInPage = () => {
         </Button>
 
         <Spacer />
-        <Button icon="account-plus" onPress={handleLogin}>
+        <Button icon="account" onPress={handleLogin}>
           Já possui uma conta? Entrar
         </Button>
       </FormContent>

@@ -9,14 +9,25 @@ const AppMenu = ({ navigation }) => {
 
   return (
     <DrawerContentScrollView>
-      <Drawer.Item icon="account" label="Início" onPress={() => handleMenu('Root')} />
-      <Drawer.Item icon="account" label="Meu Perfil" />
-      <Drawer.Item icon="account-multiple" label="Meus amigos" />
-      <Drawer.Item icon="leaf" label="Minhas Plantas" />
+      <Drawer.Item icon="leaf" label="Minhas Plantas" onPress={() => handleMenu('Root')} />
+      <Drawer.Item icon="account" label="Meu Perfil" onPress={() => handleMenu('Profile')} />
+      <Drawer.Item
+        icon="account-multiple"
+        label="Meus amigos"
+        onPress={() => handleMenu('Contacts')}
+      />
       <Drawer.Item icon="heart" label="Meus Interreses" />
       <Divider />
-      <Drawer.Item icon="book-open-variant" label="Buscar Plantas" />
-      <Drawer.Item icon="account-plus" label="Buscar Usuários" />
+      <Drawer.Item
+        icon="book-open-variant"
+        label="Buscar Plantas"
+        onPress={() => handleMenu('FindPlants')}
+      />
+      <Drawer.Item
+        icon="account-plus"
+        label="Buscar Usuários"
+        onPress={() => handleMenu('FindContacts')}
+      />
     </DrawerContentScrollView>
   )
 }

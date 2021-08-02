@@ -4,9 +4,7 @@ import { Appbar, useTheme } from 'react-native-paper'
 import { DrawerActions, useNavigation } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import theme from '../../theme'
-
-const Header = ({ scene, previous }) => {
+const Header = ({ scene }) => {
   const navigation = useNavigation()
   const { colors } = useTheme()
 
@@ -22,17 +20,21 @@ const Header = ({ scene, previous }) => {
     navigation.dispatch(DrawerActions.toggleDrawer())
   }
 
+  const handleProfile = () => {
+    navigation.navigate('Profile')
+  }
+
   return (
     <Appbar.Header theme={{ colors: { primary: colors.appBar } }}>
-      {previous ? (
-        <Appbar.BackAction onPress={navigation.goBack} />
-      ) : (
-        <TouchableOpacity onPress={handelMenu}>
-          <MaterialCommunityIcons name="menu" size={36} color={colors.white} />
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity onPress={handelMenu}>
+        <MaterialCommunityIcons name="menu" size={36} color={colors.white} />
+      </TouchableOpacity>
 
       <Appbar.Content title={title || 'Plantas'} />
+
+      <TouchableOpacity onPress={handleProfile}>
+        <MaterialCommunityIcons name="account" size={36} color={colors.white} />
+      </TouchableOpacity>
     </Appbar.Header>
   )
 }

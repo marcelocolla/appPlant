@@ -6,7 +6,13 @@ import AppHeader from '../components/AppHeader'
 import LoadingPage from '../pages/loading'
 import LoginPage from '../pages/login'
 import SignInPage from '../pages/signIn'
+
+// User Logged
 import MainPage from '../pages/main'
+import ProfilePage from '../pages/profile'
+import FindPlantsPage from '../pages/findPlants'
+import ContactsPage from '../pages/contacts'
+import FindContactsPage from '../pages/findContacts'
 
 const Drawer = createDrawerNavigator()
 
@@ -26,7 +32,19 @@ const Routes = () => {
       <Drawer.Screen name="Loading" component={LoadingPage} options={options} />
       <Drawer.Screen name="Login" component={LoginPage} options={options} />
       <Drawer.Screen name="SignIn" component={SignInPage} options={options} />
-      <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Plantas' }} />
+      <Drawer.Screen name="Profile" component={ProfilePage} options={{ title: 'Meu perfil' }} />
+      <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Minhas Plantas' }} />
+      <Drawer.Screen name="Contacts" component={ContactsPage} options={{ title: 'Meus amigos' }} />
+      <Drawer.Screen
+        name="FindContacts"
+        component={FindContactsPage}
+        options={{ title: 'Buscar usuários' }}
+      />
+      <Drawer.Screen
+        name="FindPlants"
+        component={FindPlantsPage}
+        options={{ title: 'Buscar Plantas' }}
+      />
     </Drawer.Navigator>
   )
 }
