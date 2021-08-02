@@ -10,4 +10,6 @@ export const BoxAvatar = styled.View`
   align-items: center;
   padding: 32px;
   background-color: #ccc;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 `
