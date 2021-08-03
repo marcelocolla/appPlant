@@ -13,6 +13,7 @@ import ProfilePage from '../pages/profile'
 import FindPlantsPage from '../pages/findPlants'
 import ContactsPage from '../pages/contacts'
 import FindContactsPage from '../pages/findContacts'
+import InterestsPage from '../pages/interests'
 
 const Drawer = createDrawerNavigator()
 
@@ -33,8 +34,13 @@ const Routes = () => {
       <Drawer.Screen name="Login" component={LoginPage} options={options} />
       <Drawer.Screen name="SignIn" component={SignInPage} options={options} />
       <Drawer.Screen name="Profile" component={ProfilePage} options={{ title: 'Meu perfil' }} />
-      <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Minhas Plantas' }} />
+      <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Minhas plantas' }} />
       <Drawer.Screen name="Contacts" component={ContactsPage} options={{ title: 'Meus amigos' }} />
+      <Drawer.Screen
+        name="Interests"
+        component={InterestsPage}
+        options={{ title: 'Meus interreses' }}
+      />
       <Drawer.Screen
         name="FindContacts"
         component={FindContactsPage}
