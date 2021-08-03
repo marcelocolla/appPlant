@@ -1,7 +1,11 @@
 import React from 'react'
 
-import { ButtonStyled } from './styled'
+import { Button as ButtonBase } from 'react-native-paper'
 
-const Button = ({ children, ...rest }) => <ButtonStyled {...rest}>{children}</ButtonStyled>
+const Button = ({ children, ...rest }) => (
+  <ButtonBase contentStyle={{ height: 52 }} {...rest}>
+    {children}
+  </ButtonBase>
+)
 
 export default Button

@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
+import { Divider } from 'react-native-paper'
+
+import Button from '../../components/Button'
 import ChipInterest from '../../components/ChipInterest'
 
-import { Root, BoxList } from './styled'
+import { Root, Content, BoxList, Footer } from './styled'
 
 import data from '../../mock/interests'
 
 const InterestsPage = () => {
   const [selected, setSelected] = useState([])
+
+  const handleSave = () => {
+    // --
+  }
 
   const handleSelect = (select) => {
     const index = selected.findIndex((item) => item.id === select.id)
@@ -28,16 +35,25 @@ const InterestsPage = () => {
 
   return (
     <Root>
-      <BoxList>
-        {data.map((item) => (
-          <ChipInterest
-            key={item.id}
-            item={item}
-            selected={hasSelected(item.id)}
-            onHandler={handleSelect}
-          />
-        ))}
-      </BoxList>
+      <Content>
+        <BoxList>
+          {data.map((item) => (
+            <ChipInterest
+              key={item.id}
+              item={item}
+              selected={hasSelected(item.id)}
+              onHandler={handleSelect}
+            />
+          ))}
+        </BoxList>
+      </Content>
+
+      <Divider />
+      <Footer>
+        <Button mode="contained" onPress={handleSave}>
+          Salvar
+        </Button>
+      </Footer>
     </Root>
   )
 }
