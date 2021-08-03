@@ -1,9 +1,20 @@
 import React from 'react'
 import { Divider, List, Avatar, Colors } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
 
 import { Root, BoxAvatar } from './styled'
 
 const ProfilePage = () => {
+  const navigation = useNavigation()
+
+  const handleEdit = () => {
+    navigation.navigate('ProfileEdit')
+  }
+
+  const handlePassword = () => {
+    navigation.navigate('ProfilePassword')
+  }
+
   return (
     <Root>
       <BoxAvatar>
@@ -15,10 +26,12 @@ const ProfilePage = () => {
         title="Gustavo Macedo"
         description="Gustavo.macedo@gmail.com"
         right={(props) => <List.Icon {...props} icon="account-edit-outline" />}
+        onPress={handleEdit}
       />
       <List.Item
         title="Alterar senha"
         right={(props) => <List.Icon {...props} icon="lock-outline" />}
+        onPress={handlePassword}
       />
       <List.Item
         title="Logout"

@@ -10,6 +10,8 @@ import SignInPage from '../pages/signIn'
 // User Logged
 import MainPage from '../pages/main'
 import ProfilePage from '../pages/profile'
+import ProfileEditPage from '../pages/profileEdit'
+import ProfilePasswordPage from '../pages/profilePassword'
 import FindPlantsPage from '../pages/findPlants'
 import ContactsPage from '../pages/contacts'
 import FindContactsPage from '../pages/findContacts'
@@ -34,6 +36,16 @@ const Routes = () => {
       <Drawer.Screen name="Login" component={LoginPage} options={options} />
       <Drawer.Screen name="SignIn" component={SignInPage} options={options} />
       <Drawer.Screen name="Profile" component={ProfilePage} options={{ title: 'Meu perfil' }} />
+      <Drawer.Screen
+        name="ProfileEdit"
+        component={ProfileEditPage}
+        options={{ title: 'Editar perfil' }}
+      />
+      <Drawer.Screen
+        name="ProfilePassword"
+        component={ProfilePasswordPage}
+        options={{ title: 'Alterar senha' }}
+      />
       <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Minhas plantas' }} />
       <Drawer.Screen name="Contacts" component={ContactsPage} options={{ title: 'Meus amigos' }} />
       <Drawer.Screen

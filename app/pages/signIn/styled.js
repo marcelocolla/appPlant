@@ -2,10 +2,9 @@ import React from 'react'
 import styled from 'styled-components/native'
 import theme from '../../theme'
 
-export const Root = styled.View`
+export const Root = styled.ScrollView`
   flex: 1;
   background-color: ${theme.colors.white};
-  justify-content: center;
 `
 
 export const FormContent = styled.View`

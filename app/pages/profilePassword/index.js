@@ -1,54 +1,47 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Title, TextInput } from 'react-native-paper'
+import { TextInput } from 'react-native-paper'
 
 import Spacer from '../../components/Spacer'
 import Button from '../../components/Button'
 import { Root, FormContent } from './styled'
 
-const SignInPage = () => {
+const ProfilePasswordPage = () => {
   const navigation = useNavigation()
 
   const handleSubmit = () => {
-    navigation.navigate('Login')
-  }
-
-  const handleLogin = () => {
-    navigation.navigate('Login')
+    navigation.goBack()
   }
 
   return (
     <Root>
       <FormContent>
-        <Title>Criar conta</Title>
-
-        <Spacer />
-        <TextInput label="Nome" mode="outlined" right={<TextInput.Icon name="account" />} />
-
-        <Spacer />
-        <TextInput label="Email" mode="outlined" right={<TextInput.Icon name="email" />} />
+        <TextInput
+          secureTextEntry
+          name="password"
+          label="Senha Atual"
+          mode="outlined"
+          right={<TextInput.Icon name="eye" />}
+        />
 
         <Spacer />
         <TextInput
           secureTextEntry
           name="password"
-          label="Senha"
+          label="Nova Senha"
           mode="outlined"
           right={<TextInput.Icon name="eye" />}
         />
 
         <Spacer />
         <Button icon="send" mode="contained" onPress={handleSubmit}>
-          Cadastrar
+          Salvar
         </Button>
 
         <Spacer />
-        <Button icon="account" onPress={handleLogin}>
-          Já possui uma conta? Entrar
-        </Button>
       </FormContent>
     </Root>
   )
 }
 
-export default SignInPage
+export default ProfilePasswordPage

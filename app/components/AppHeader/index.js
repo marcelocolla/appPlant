@@ -33,7 +33,7 @@ const Header = ({ scene }) => {
       <Appbar.Content title={title || 'Plantas'} />
 
       <TouchableOpacity onPress={handleProfile}>
-        <MaterialCommunityIcons name="account" size={36} color={colors.white} />
+        <MaterialCommunityIcons name="account" size={32} color={colors.white} />
       </TouchableOpacity>
     </Appbar.Header>
   )
