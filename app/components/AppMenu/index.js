@@ -9,7 +9,8 @@ const AppMenu = ({ navigation }) => {
 
   return (
     <DrawerContentScrollView>
-      <Drawer.Item icon="leaf" label="Minhas plantas" onPress={() => handleMenu('Root')} />
+      <Drawer.Item icon="home" label="Início" onPress={() => handleMenu('Feed')} />
+      <Drawer.Item icon="leaf" label="Minhas plantas" onPress={() => handleMenu('Plants')} />
       <Drawer.Item
         icon="account-multiple"
         label="Meus amigos"

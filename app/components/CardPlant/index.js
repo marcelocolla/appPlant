@@ -1,11 +1,14 @@
 import React from 'react'
-import { Button, Title, Paragraph, IconButton, Colors } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import { Paragraph, IconButton, Colors } from 'react-native-paper'
 
 import { Card } from './styled'
 
 const CardPlant = ({ title, subtitle, uri, description, showAction = true }) => {
+  const navigation = useNavigation()
+
   const handleAction = () => {
-    console.log('Action Pressed')
+    navigation.navigate('PlantDetails', { plantId: '123' })
   }
 
   return (
@@ -18,7 +21,7 @@ const CardPlant = ({ title, subtitle, uri, description, showAction = true }) => 
           showAction ? (
             <IconButton
               color={Colors.green600}
-              icon="plus-circle-outline"
+              icon="arrow-right"
               size={28}
               onPress={handleAction}
             />

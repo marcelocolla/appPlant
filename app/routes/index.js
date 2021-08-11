@@ -8,12 +8,15 @@ import LoginPage from '../pages/login'
 import SignInPage from '../pages/signIn'
 
 // User Logged
-import MainPage from '../pages/main'
+import FeedPage from '../pages/feed'
 import ProfilePage from '../pages/profile'
 import ProfileEditPage from '../pages/profileEdit'
 import ProfilePasswordPage from '../pages/profilePassword'
+import PlantsPage from '../pages/plants'
+import PlantDetailsPage from '../pages/plantDetails'
 import FindPlantsPage from '../pages/findPlants'
 import ContactsPage from '../pages/contacts'
+import ContactDetailsPage from '../pages/contactDetails'
 import FindContactsPage from '../pages/findContacts'
 import InterestsPage from '../pages/interests'
 
@@ -26,6 +29,11 @@ const Routes = () => {
     headerShown: false,
   }
 
+  const optionsHeader = {
+    shouldBack: true,
+    shouldUser: false,
+  }
+
   return (
     <Drawer.Navigator
       initialRouteName={initialRouteName}
@@ -34,20 +42,39 @@ const Routes = () => {
     >
       <Drawer.Screen name="Loading" component={LoadingPage} options={options} />
       <Drawer.Screen name="Login" component={LoginPage} options={options} />
-      <Drawer.Screen name="SignIn" component={SignInPage} options={options} />
-      <Drawer.Screen name="Profile" component={ProfilePage} options={{ title: 'Meu perfil' }} />
+      <Drawer.Screen
+        name="SignIn"
+        component={SignInPage}
+        options={{ ...optionsHeader, title: 'Criar conta' }}
+      />
+      <Drawer.Screen
+        name="Profile"
+        component={ProfilePage}
+        options={{ title: 'Meu perfil', shouldUser: false }}
+      />
       <Drawer.Screen
         name="ProfileEdit"
         component={ProfileEditPage}
-        options={{ title: 'Editar perfil' }}
+        options={{ ...optionsHeader, title: 'Editar perfil' }}
       />
       <Drawer.Screen
         name="ProfilePassword"
         component={ProfilePasswordPage}
-        options={{ title: 'Alterar senha' }}
+        options={{ ...optionsHeader, title: 'Alterar senha' }}
       />
-      <Drawer.Screen name="Root" component={MainPage} options={{ title: 'Minhas plantas' }} />
+      <Drawer.Screen name="Feed" component={FeedPage} options={{ title: 'Meu Feed' }} />
+      <Drawer.Screen name="Plants" component={PlantsPage} options={{ title: 'Minhas plantas' }} />
+      <Drawer.Screen
+        name="PlantDetails"
+        component={PlantDetailsPage}
+        options={{ title: 'Planta detalhe', shouldBack: true }}
+      />
       <Drawer.Screen name="Contacts" component={ContactsPage} options={{ title: 'Meus amigos' }} />
+      <Drawer.Screen
+        name="ContactDetails"
+        component={ContactDetailsPage}
+        options={{ ...optionsHeader, title: 'Perfil' }}
+      />
       <Drawer.Screen
         name="Interests"
         component={InterestsPage}

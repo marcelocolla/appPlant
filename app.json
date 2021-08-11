@@ -2,10 +2,8 @@
   "expo": {
     "name": "appPlant",
     "slug": "appPlant",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "version": "1.0.1",
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "package": "com.marcelo.colla.appPlant"
     }

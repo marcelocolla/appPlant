@@ -10,7 +10,7 @@ const LoginPage = () => {
   const navigation = useNavigation()
 
   const handleSubmit = () => {
-    navigation.navigate('Root')
+    navigation.navigate('Feed')
   }
 
   const handleSignIn = () => {

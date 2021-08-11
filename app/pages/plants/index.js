@@ -8,7 +8,7 @@ import { Root } from './styled'
 
 import data from '../../mock/plants'
 
-const MainPage = () => {
+const PlantsPage = () => {
   return (
     <Root>
       <FlatList
@@ -21,4 +21,4 @@ const MainPage = () => {
   )
 }
 
-export default MainPage
+export default PlantsPage

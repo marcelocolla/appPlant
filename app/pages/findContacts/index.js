@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList } from 'react-native'
+import { Divider } from 'react-native-paper'
 
 import SearchField from '../../components/SearchField'
 import UserListItem from '../../components/UserListItem'
@@ -16,6 +17,7 @@ const FindContactsPage = () => {
       <FlatList
         data={data}
         renderItem={({ item }) => <UserListItem {...item} />}
+        ItemSeparatorComponent={() => <Divider />}
         keyExtractor={(item) => item.id}
       />
     </Root>
