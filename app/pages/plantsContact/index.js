@@ -13,7 +13,7 @@ const PlantsPage = () => {
     <Root>
       <FlatList
         data={data}
-        renderItem={({ item }) => <CardPlant {...item} showAction={true} />}
+        renderItem={({ item }) => <CardPlant {...item} showAction={false} />}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={<Spacer sized={2} />}
       />

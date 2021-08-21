@@ -19,6 +19,7 @@ import ContactsPage from '../pages/contacts'
 import ContactDetailsPage from '../pages/contactDetails'
 import FindContactsPage from '../pages/findContacts'
 import InterestsPage from '../pages/interests'
+import AddFeedPage from '../pages/addFeed'
 
 const Drawer = createDrawerNavigator()
 
@@ -89,6 +90,11 @@ const Routes = () => {
         name="FindPlants"
         component={FindPlantsPage}
         options={{ title: 'Buscar Plantas' }}
+      />
+      <Drawer.Screen
+        name="AddFeedPage"
+        component={AddFeedPage}
+        options={{ title: 'Adicionar publicação' }}
       />
     </Drawer.Navigator>
   )
