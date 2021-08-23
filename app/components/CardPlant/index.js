@@ -4,19 +4,19 @@ import { Paragraph, IconButton, Colors } from 'react-native-paper'
 
 import { Card } from './styled'
 
-const CardPlant = ({ title, subtitle, uri, description, showAction = true }) => {
+const CardPlant = ({ _id, name, scientificName, img, description, showAction = true }) => {
   const navigation = useNavigation()
 
   const handleAction = () => {
-    navigation.navigate('PlantDetails', { plantId: '123' })
+    navigation.navigate('PlantDetails', { plantId: _id })
   }
 
   return (
     <Card mode="outlined">
-      <Card.Cover source={{ uri }} />
+      <Card.Cover source={{ uri: img }} />
       <Card.Title
-        title={title}
-        subtitle={subtitle}
+        title={name}
+        subtitle={scientificName}
         right={() =>
           showAction ? (
             <IconButton

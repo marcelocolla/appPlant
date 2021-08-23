@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
-import { FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, Text } from 'react-native'
 
 import CardPlant from '../../components/CardPlant'
 import SearchField from '../../components/SearchField'
 import ChipInterest from '../../components/ChipInterest'
+import interests from '../../mock/interests'
+import { Plants } from '../../services/api'
 
 import { Root, BoxCategories } from './styled'
 
-import plants from '../../mock/plants'
-import interests from '../../mock/interests'
+const sortPlantsByName = (a, b) => {
+  return a.name <= b.name ? -1 : 1
+}
 
 const FindPlantsPage = () => {
   const [selected, setSelected] = useState([])
+  const [plants, updatePlants] = useState([])
+  const [loading, updateLoading] = useState(true)
 
   const handleSelect = (select) => {
     const index = selected.findIndex((item) => item.id === select.id)
@@ -31,6 +36,18 @@ const FindPlantsPage = () => {
     return selected.some((item) => item.id === id)
   }
 
+  const getPlants = async () => {
+    updateLoading(true)
+    updatePlants([])
+    const res = await Plants.getAll()
+    if (res) updatePlants(res.data.plants.sort(sortPlantsByName))
+    updateLoading(false)
+  }
+
+  useEffect(() => {
+    getPlants()
+  }, [])
+
   return (
     <Root>
       <SearchField />
@@ -45,12 +62,19 @@ const FindPlantsPage = () => {
           keyExtractor={(item) => item.id}
         />
       </BoxCategories>
-
-      <FlatList
-        data={plants}
-        renderItem={({ item }) => <CardPlant {...item} />}
-        keyExtractor={(item) => item.id}
-      />
+      {!loading ? (
+        plants.length > 0 ? (
+          <FlatList
+            data={plants}
+            renderItem={({ item }) => <CardPlant {...item} />}
+            keyExtractor={(item) => item._id}
+          />
+        ) : (
+          <Text>Nenhuma planta foi encontrada.</Text>
+        )
+      ) : (
+        <ActivityIndicator />
+      )}
     </Root>
   )
 }

@@ -1,45 +1,93 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { ActivityIndicator } from 'react-native'
 import { Card, IconButton, Title, Text } from 'react-native-paper'
+
+import { AuthContext } from '../../contexts/AuthContext'
+import { Plants, Users } from '../../services/api'
 
 import { Root, Content, ContentDescription } from './styled'
 
-const PlantDetailsPage = ({ plantId }) => {
-  console.log('plantId', plantId)
+const PlantDetailsPage = ({ route }) => {
+  const { user, updateUser } = useContext(AuthContext)
+  const [plant, updatePlant] = useState({})
+  const [loading, updateLoading] = useState(true)
 
-  const handleAction = () => {}
+  const userHasPlant = (plant) => user.plants.includes(plant._id)
 
-  return (
+  const handleAddPlant = async () => {
+    try {
+      await Users.addPlant(plant._id)
+      await updateUserState()
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  const handleRemovePlant = async () => {
+    try {
+      await Users.removePlant(plant._id)
+      await updateUserState()
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  const updateUserState = async () => {
+    try {
+      const {
+        data: { user },
+      } = await Users.self()
+      updateUser(user)
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  const getPlant = async () => {
+    updateLoading(true)
+    const { plantId } = route.params
+    const res = await Plants.getById(plantId)
+    updatePlant(res.data.plant)
+    updateLoading(false)
+  }
+
+  useEffect(() => {
+    getPlant()
+  }, [route.params])
+
+  return !loading ? (
     <Root>
       <Card.Title
-        title="Nome da planta"
-        subtitle="descrição"
-        right={(props) => (
-          <IconButton {...props} icon="plus-circle-outline" onPress={handleAction} />
-        )}
+        title={plant.name}
+        subtitle={plant.scientificName}
+        right={(props) =>
+          userHasPlant(plant) ? (
+            <IconButton {...props} icon="trash-can-outline" onPress={handleRemovePlant} />
+          ) : (
+            <IconButton {...props} icon="plus-circle-outline" onPress={handleAddPlant} />
+          )
+        }
       />
-      <Card.Cover
-        source={{ uri: 'https://www.greenme.com.br/wp-content/uploads/2020/11/boldo-do-chile.jpg' }}
-      />
+      <Card.Cover source={{ uri: plant.img }} />
 
       <Content>
         <ContentDescription>
           <Title>Descrição</Title>
-          <Text>
-            A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim
-            utilizado na produção gráfica para preencher os espaços de texto em publicações para
-            testar e ajustar aspectos visuais antes de utilizar conteúdo real.
-          </Text>
+          <Text>{plant.description}</Text>
         </ContentDescription>
         <ContentDescription>
-          <Title>Dicas de culinária</Title>
-          <Text>
-            A expressão Lorem ipsum em design gráfico e editoração é um texto padrão em latim
-            utilizado na produção gráfica para preencher os espaços de texto em publicações para
-            testar e ajustar aspectos visuais antes de utilizar conteúdo real.
-          </Text>
+          <Title>Plantio</Title>
+          <Text>Plantar em Março ou Abril.</Text>
+          <Text>Regar todos os dias.</Text>
+        </ContentDescription>
+        <ContentDescription>
+          <Title>Colheita</Title>
+          <Text>Colher em Agosto ou Setembro.</Text>
         </ContentDescription>
       </Content>
     </Root>
+  ) : (
+    <ActivityIndicator />
   )
 }
 

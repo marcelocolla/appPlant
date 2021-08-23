@@ -1,16 +1,26 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Title, TextInput } from 'react-native-paper'
 
 import Spacer from '../../components/Spacer'
 import Button from '../../components/Button'
+import { AuthContext } from '../../contexts/AuthContext'
+
 import { Root, FormContent } from './styled'
 
 const LoginPage = () => {
   const navigation = useNavigation()
+  const { signIn } = useContext(AuthContext)
+  const [email, updateEmail] = useState('')
+  const [password, updatePassword] = useState('')
 
-  const handleSubmit = () => {
-    navigation.navigate('Feed')
+  const handleSubmit = async () => {
+    try {
+      await signIn(email, password)
+      navigation.navigate('Feed')
+    } catch (err) {
+      alert(err)
+    }
   }
 
   const handleSignIn = () => {
@@ -23,7 +33,13 @@ const LoginPage = () => {
         <Title>Entrar</Title>
         <Spacer />
 
-        <TextInput label="Email" mode="outlined" right={<TextInput.Icon name="account" />} />
+        <TextInput
+          label="Email"
+          mode="outlined"
+          right={<TextInput.Icon name="account" />}
+          value={email}
+          onChangeText={(value) => updateEmail(value)}
+        />
 
         <Spacer />
         <TextInput
@@ -31,6 +47,8 @@ const LoginPage = () => {
           label="Senha"
           mode="outlined"
           right={<TextInput.Icon name="eye" />}
+          value={password}
+          onChangeText={(value) => updatePassword(value)}
         />
 
         <Spacer />
