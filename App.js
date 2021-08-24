@@ -5,14 +5,16 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import Routes from './app/routes'
 import theme from './app/theme'
+import { AuthProvider } from './app/contexts/AuthContext'
 
 const App = () => (
   <PaperProvider theme={theme}>
     <StatusBar style="auto" />
-
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </AuthProvider>
   </PaperProvider>
 )
 

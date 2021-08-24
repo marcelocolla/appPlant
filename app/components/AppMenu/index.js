@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Divider, Drawer } from 'react-native-paper'
-import { useNavigation } from '@react-navigation/native'
-
 import { DrawerContentScrollView } from '@react-navigation/drawer'
+
+import { AuthContext } from '../../contexts/AuthContext'
 
 const AppMenu = ({ navigation }) => {
   const handleMenu = (route) => navigation.navigate(route)
+  const { signOut } = useContext(AuthContext)
 
   return (
     <DrawerContentScrollView>
@@ -32,7 +33,13 @@ const AppMenu = ({ navigation }) => {
       />
 
       <Divider />
-      <Drawer.Item icon="exit-to-app" label="Desconectar" />
+      <Drawer.Item
+        icon="exit-to-app"
+        label="Desconectar"
+        onPress={async () => {
+          await signOut(navigation)
+        }}
+      />
     </DrawerContentScrollView>
   )
 }

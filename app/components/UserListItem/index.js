@@ -1,13 +1,21 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import { List } from 'react-native-paper'
 
-const UserListItem = ({ title, info }) => {
+const UserListItem = ({ _id, name, email }) => {
+  const navigation = useNavigation()
+
+  const handleAction = () => {
+    navigation.navigate('ContactDetails', { userId: _id })
+  }
+
   return (
     <List.Item
-      title={title}
-      description={info}
+      title={`${name.first} ${name.last}`}
+      description={email}
       left={(props) => <List.Icon {...props} icon="account" />}
+      onPress={handleAction}
     />
   )
 }
